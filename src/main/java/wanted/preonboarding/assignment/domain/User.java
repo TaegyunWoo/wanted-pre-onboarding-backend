@@ -7,10 +7,7 @@
  */
 package wanted.preonboarding.assignment.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -21,6 +18,7 @@ import java.util.List;
 @Table(name = "USER")
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Getter
 @SuperBuilder
 public class User extends BaseTimeEntity {
