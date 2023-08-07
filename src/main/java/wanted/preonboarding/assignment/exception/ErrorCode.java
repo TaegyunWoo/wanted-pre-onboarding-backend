@@ -17,7 +17,8 @@ public enum ErrorCode {
   INVALID_INPUT_VALUE(400, "C001", "Input value is rejected"),
 
   //사용자
-  DUPLICATED_ACCOUNT_ID(400, "U001", "That account ID is already exists")
+  DUPLICATED_ACCOUNT_ID(400, "U001", "That account ID is already exists"),
+  INVALID_SIGN_IN_INFO(401, "U002", "Requested sign-in information is not valid")
   ;
 
 

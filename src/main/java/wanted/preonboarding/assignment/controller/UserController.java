@@ -21,14 +21,23 @@ import static wanted.preonboarding.assignment.dto.UserDto.UserRequest;
 public class UserController implements UserApi {
   private final UserService userService;
 
+  /**
+   * 회원가입 핸들러
+   * @param userRequest 회원가입 정보
+   */
   @Override
   public void postSignUp(UserRequest userRequest) {
     userService.registerNewUser(userRequest);
   }
 
+  /**
+   * 로그인 핸들러
+   * @param userRequest 로그인 정보
+   * @return Access·Refresh 토큰쌍
+   */
   @Override
   public TokenResponse postSignIn(UserRequest userRequest) {
-
-    return null;
+    TokenResponse response = userService.signIn(userRequest);
+    return response;
   }
 }

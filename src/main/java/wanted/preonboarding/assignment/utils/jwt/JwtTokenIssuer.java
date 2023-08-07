@@ -10,10 +10,6 @@ package wanted.preonboarding.assignment.utils.jwt;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -34,17 +30,6 @@ public class JwtTokenIssuer {
   }
 
   /**
-   * Access·Refresh 토큰 쌍을 발급받는 메서드
-   * @param userPk 발급받은 사용자의 pk 값
-   * @return 토큰쌍
-   */
-  public TokenPair createTokenPair(long userPk) {
-    String accessToken = createToken(userPk, false); //Access Token 발급
-    String refreshToken = createToken(userPk, true); //Refresh Token 발급
-    return new TokenPair(accessToken, refreshToken);
-  }
-
-  /**
    * Token 발급 메서드
    * @param userPk 사용자 계정 pk값
    * @param isRefresh true: Refresh Token 발급, false: Access Token 발급
@@ -62,14 +47,6 @@ public class JwtTokenIssuer {
         .claim("userPk", userPk) //토큰을 받을 사용자 pk를 비공개 클레임으로 설정
         .signWith(SignatureAlgorithm.HS512, secretKey) //해싱 알고리즘으로 HS512를 사용하기 때문에, secretKey가 512비트 이상이어야 함
         .compact();
-  }
-
-  @Getter
-  @Setter
-  @AllArgsConstructor
-  public static class TokenPair {
-    private String accessToken;
-    private String refreshToken;
   }
 
 }
