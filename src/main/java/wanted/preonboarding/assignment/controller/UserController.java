@@ -23,7 +23,7 @@ public class UserController implements UserApi {
 
   @Override
   public void postSignUp(UserRequest userRequest) {
-
+    userService.registerNewUser(userRequest);
   }
 
   @Override

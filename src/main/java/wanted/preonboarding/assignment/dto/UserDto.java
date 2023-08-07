@@ -21,7 +21,7 @@ public class UserDto {
   @Builder
   public static class UserRequest {
     @Schema(description = "반드시 @가 포함되어야 함.", example = "myfoo@gmail.com")
-    @Pattern(regexp = "@")
+    @Pattern(regexp = ".*@.*")
     private String accountId;
     @Schema(description = "반드시 8자 이상이어야 함.")
     @Length(min = 8)
