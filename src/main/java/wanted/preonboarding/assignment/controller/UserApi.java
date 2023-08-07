@@ -1,3 +1,11 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.controller
+ * fileName       : UserApi
+ * author         : 우태균
+ * date           : 2023/08/07
+ * description    : User 관련 API 인터페이스.
+ *                  모든 애너테이션을 인터페이스에 모아둬, 실제 컨트롤러 가독성 개선
+ */
 package wanted.preonboarding.assignment.controller;
 
 import io.swagger.v3.oas.annotations.Operation;

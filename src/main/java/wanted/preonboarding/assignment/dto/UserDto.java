@@ -1,3 +1,10 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.dto
+ * fileName       : UserDto
+ * author         : 우태균
+ * date           : 2023/08/07
+ * description    : 사용자 DTO
+ */
 package wanted.preonboarding.assignment.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,3 +1,10 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.domain
+ * fileName       : BaseTimeEntity
+ * author         : 우태균
+ * date           : 2023/08/07
+ * description    : 엔티티 생성 및 수정 시각을 공통 관리하는 슈퍼 클래스
+ */
 package wanted.preonboarding.assignment.domain;
 
 import lombok.AllArgsConstructor;
