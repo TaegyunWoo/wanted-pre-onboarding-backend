@@ -10,5 +10,5 @@ package wanted.preonboarding.assignment.repository;
 import org.springframework.data.repository.CrudRepository;
 import wanted.preonboarding.assignment.domain.TokenPair;
 
-public interface TokenPairRedisRepository extends CrudRepository<TokenPair, String> {
+public interface TokenPairRedisRepository extends CrudRepository<TokenPair, Long> {
 }

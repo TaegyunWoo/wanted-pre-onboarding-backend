@@ -56,7 +56,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     //DB에 저장된 토큰인지 확인
     long userPk = claims.get("userPk", Long.class);
-    tokenPairRedisRepository.findById("" + userPk)
+    tokenPairRedisRepository.findById(userPk)
         .orElseThrow(() -> new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN));
 
     //HttpServletRequest의 attribute에 User PK값 추가
