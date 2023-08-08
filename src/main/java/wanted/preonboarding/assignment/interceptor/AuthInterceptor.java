@@ -32,7 +32,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    log.error(request.getRequestURI());
     //Request의 Authorization 헤더 확인
     String authHeaderValue = request.getHeader("Authorization");
     if (authHeaderValue == null) { //Authorization 헤더에 아무런 값이 존재하지 않는 경우
@@ -57,7 +56,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     //DB에 저장된 토큰인지 확인
     long userPk = claims.get("userPk", Long.class);
-    tokenPairRedisRepository.findById("TokenPair:" + userPk)
+    tokenPairRedisRepository.findById("" + userPk)
         .orElseThrow(() -> new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN));
 
     //HttpServletRequest의 attribute에 User PK값 추가
