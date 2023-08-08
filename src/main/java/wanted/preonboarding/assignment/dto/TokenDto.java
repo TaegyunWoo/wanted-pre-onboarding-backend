@@ -3,7 +3,7 @@
  * fileName       : TokenDto
  * author         : 우태균
  * date           : 2023/08/07
- * description    : 인증 통큰 DTO
+ * description    : 인증 토큰 DTO
  */
 package wanted.preonboarding.assignment.dto;
 
