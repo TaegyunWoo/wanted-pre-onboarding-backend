@@ -23,7 +23,8 @@ import wanted.preonboarding.assignment.utils.jwt.JwtTokenParser;
 
 import java.util.Objects;
 
-import static wanted.preonboarding.assignment.dto.TokenDto.*;
+import static wanted.preonboarding.assignment.dto.TokenDto.TokenRequest;
+import static wanted.preonboarding.assignment.dto.TokenDto.TokenResponse;
 
 @RequiredArgsConstructor
 @Service

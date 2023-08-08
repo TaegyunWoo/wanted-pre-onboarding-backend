@@ -7,25 +7,16 @@
  */
 package wanted.preonboarding.assignment.interceptor;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerInterceptor;
-import wanted.preonboarding.assignment.domain.TokenPair;
 import wanted.preonboarding.assignment.exception.ErrorCode;
 import wanted.preonboarding.assignment.exception.InvalidValueException;
-import wanted.preonboarding.assignment.repository.TokenPairRedisRepository;
 import wanted.preonboarding.assignment.service.TokenService;
-import wanted.preonboarding.assignment.utils.jwt.JwtTokenParser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Objects;
 
 @Slf4j
 @RequiredArgsConstructor
