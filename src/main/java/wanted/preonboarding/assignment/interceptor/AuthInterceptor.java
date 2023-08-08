@@ -14,7 +14,9 @@ import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerInterceptor;
+import wanted.preonboarding.assignment.domain.TokenPair;
 import wanted.preonboarding.assignment.exception.ErrorCode;
 import wanted.preonboarding.assignment.exception.InvalidValueException;
 import wanted.preonboarding.assignment.repository.TokenPairRedisRepository;
@@ -22,6 +24,7 @@ import wanted.preonboarding.assignment.utils.jwt.JwtTokenParser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -56,8 +59,11 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     //DB에 저장된 토큰인지 확인
     long userPk = claims.get("userPk", Long.class);
-    tokenPairRedisRepository.findById(userPk)
+    TokenPair savedTokenPair = tokenPairRedisRepository.findById(userPk)
         .orElseThrow(() -> new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN));
+    if (Objects.equals(accessTokenValue, savedTokenPair.getAccessToken())) {
+      throw new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN);
+    }
 
     //HttpServletRequest의 attribute에 User PK값 추가
     request.setAttribute("userPk", userPk);
