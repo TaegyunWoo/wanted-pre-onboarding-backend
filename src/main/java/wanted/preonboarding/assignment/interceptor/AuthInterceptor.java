@@ -20,6 +20,7 @@ import wanted.preonboarding.assignment.domain.TokenPair;
 import wanted.preonboarding.assignment.exception.ErrorCode;
 import wanted.preonboarding.assignment.exception.InvalidValueException;
 import wanted.preonboarding.assignment.repository.TokenPairRedisRepository;
+import wanted.preonboarding.assignment.service.TokenService;
 import wanted.preonboarding.assignment.utils.jwt.JwtTokenParser;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +31,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
-  private final TokenPairRedisRepository tokenPairRedisRepository;
-  private final JwtTokenParser jwtTokenParser;
+  private final TokenService tokenService;
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -46,24 +46,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     String accessTokenValue = authHeaderValue.substring("Bearer ".length());
 
     //토큰 유효성 검증
-    Claims claims;
-    try {
-      claims = jwtTokenParser.getClaims(accessTokenValue);
-    } catch (ExpiredJwtException e) {
-      throw new InvalidValueException(ErrorCode.EXPIRED_TOKEN);
-    } catch (SignatureException e) {
-      throw new InvalidValueException(ErrorCode.SIGNATURE_FAIL);
-    } catch (JwtException e) {
-      throw new InvalidValueException(ErrorCode.BAD_TOKEN);
-    }
-
-    //DB에 저장된 토큰인지 확인
-    long userPk = claims.get("userPk", Long.class);
-    TokenPair savedTokenPair = tokenPairRedisRepository.findById(userPk)
-        .orElseThrow(() -> new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN));
-    if (Objects.equals(accessTokenValue, savedTokenPair.getAccessToken())) {
-      throw new InvalidValueException(ErrorCode.NOT_ISSUED_TOKEN);
-    }
+    long userPk = tokenService.validateToken(accessTokenValue);
 
     //HttpServletRequest의 attribute에 User PK값 추가
     request.setAttribute("userPk", userPk);
