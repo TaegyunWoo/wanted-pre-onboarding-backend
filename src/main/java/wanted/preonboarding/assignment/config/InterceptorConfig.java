@@ -26,6 +26,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         .excludePathPatterns(
             "/user",
             "/user/sign-in",
+            "/user/token",
             "/swagger",
             "/swagger-ui/**",
             "/swagger-resources/**",

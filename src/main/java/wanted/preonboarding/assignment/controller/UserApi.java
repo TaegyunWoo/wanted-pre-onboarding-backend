@@ -35,4 +35,11 @@ public interface UserApi {
   TokenDto.TokenResponse postSignIn(
       @RequestBody @Valid UserDto.UserRequest userRequest
   );
+
+  @Operation(summary = "토큰 재발급", description = "Access Token 만료시, Refresh Token을 통해 토큰 갱신")
+  @ApiResponse(responseCode = "200", description = "토큰 재발급 성공")
+  @PostMapping("/token")
+  TokenDto.TokenResponse postToken(
+      @RequestBody TokenDto.TokenRequest tokenRequest
+  );
 }

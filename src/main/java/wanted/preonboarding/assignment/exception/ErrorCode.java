@@ -19,10 +19,12 @@ public enum ErrorCode {
   //인증
   NO_AUTH_HEADER(401, "A001", "Authorization header is empty"),
   INVALID_AUTH_VALUE_FORMAT(401, "A002", "Invalid format of authorization header's value"),
-  EXPIRED_TOKEN(401, "A003", "Access token is expired"),
+  EXPIRED_ACCESS_TOKEN(401, "A003", "Access token is expired"),
   SIGNATURE_FAIL(401, "A004", "Token's signature is invalid"),
   NOT_ISSUED_TOKEN(401, "A005", "Token is not issued by server"),
   BAD_TOKEN(401, "A006", "Token is bad"),
+  IS_NOT_EXPIRED_YET(401, "A007", "Access token is valid now"),
+  EXPIRED_REFRESH_TOKEN(401, "A008", "Refresh token is expired"),
 
   //사용자
   DUPLICATED_ACCOUNT_ID(400, "U001", "That account ID is already exists"),

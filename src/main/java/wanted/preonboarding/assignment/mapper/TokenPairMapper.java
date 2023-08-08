@@ -20,7 +20,7 @@ public interface TokenPairMapper {
 
   @Mapping(source = "accessToken", target = "accessToken")
   @Mapping(source = "refreshToken", target = "refreshToken")
-  TokenResponse toDto(TokenPair entity);
+  TokenResponse toResponseDto(TokenPair entity);
 
   @Mapping(source = "accessToken", target = "accessToken")
   @Mapping(source = "refreshToken", target = "refreshToken")

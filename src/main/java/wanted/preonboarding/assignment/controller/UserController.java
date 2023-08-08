@@ -10,8 +10,10 @@ package wanted.preonboarding.assignment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import wanted.preonboarding.assignment.service.TokenService;
 import wanted.preonboarding.assignment.service.UserService;
 
+import static wanted.preonboarding.assignment.dto.TokenDto.TokenRequest;
 import static wanted.preonboarding.assignment.dto.TokenDto.TokenResponse;
 import static wanted.preonboarding.assignment.dto.UserDto.UserRequest;
 
@@ -20,6 +22,7 @@ import static wanted.preonboarding.assignment.dto.UserDto.UserRequest;
 @RequestMapping("/user")
 public class UserController implements UserApi {
   private final UserService userService;
+  private final TokenService tokenService;
 
   /**
    * 회원가입 핸들러
@@ -38,6 +41,17 @@ public class UserController implements UserApi {
   @Override
   public TokenResponse postSignIn(UserRequest userRequest) {
     TokenResponse response = userService.signIn(userRequest);
+    return response;
+  }
+
+  /**
+   * 토큰 갱신 핸들러
+   * @param tokenRequest 만료된 AccessToken 및 유효한 RefreshToken
+   * @return 새로 발급된 토큰 쌍
+   */
+  @Override
+  public TokenResponse postToken(TokenRequest tokenRequest) {
+    TokenResponse response = tokenService.reissue(tokenRequest);
     return response;
   }
 }

@@ -66,7 +66,7 @@ public class UserService {
     TokenPair tokenPair = TokenPairMapper.INSTANCE.toEntity(accessToken, refreshToken, user.getId());
     tokenPairRedisRepository.save(tokenPair);
 
-    return TokenPairMapper.INSTANCE.toDto(tokenPair);
+    return TokenPairMapper.INSTANCE.toResponseDto(tokenPair);
   }
 
   private User validateSignInUser(UserRequest request) {
