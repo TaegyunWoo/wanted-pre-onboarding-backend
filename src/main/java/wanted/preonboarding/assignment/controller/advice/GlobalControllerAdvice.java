@@ -10,6 +10,7 @@ package wanted.preonboarding.assignment.controller.advice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,7 +23,7 @@ import wanted.preonboarding.assignment.exception.BusinessException;
 public class GlobalControllerAdvice {
 
   /**
-   * Spring Validation의 애너테이션 @Valid에 의해 발생하는 필드 바인딩 오류 처리
+   * RequestBody 에 대해, @Valid에 의해 발생하는 필드 바인딩 오류 처리
    * @param e @Valid에 의해 발생한 예외
    * @return 오류 응답
    */
@@ -34,13 +35,25 @@ public class GlobalControllerAdvice {
   }
 
   /**
-   * 파라미터 바인딩 타입 불일치 오류 처리
+   * RequestBody 에 대해, 파라미터 바인딩 타입 불일치 오류 처리
    * @param e 관련 예외 객체
    * @return 오류 응답
    */
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   protected ResponseEntity<ErrorResponseDto> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
     log.error("handleMethodArgumentTypeMismatchException", e);
+    ErrorResponseDto dto = ErrorResponseDto.of(e);
+    return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+  }
+
+  /**
+   * RequestAttribute 에 대해, @Valid에 의해 발생하는 프로퍼티 바인딩 오류 처리
+   * @param e 관련 예외 객체
+   * @return 오류 응답
+   */
+  @ExceptionHandler(BindException.class)
+  protected ResponseEntity<ErrorResponseDto> handleBindException(BindException e) {
+    log.error("handleBindException", e);
     ErrorResponseDto dto = ErrorResponseDto.of(e);
     return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
   }
