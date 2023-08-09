@@ -10,10 +10,12 @@ package wanted.preonboarding.assignment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import wanted.preonboarding.assignment.dto.LoginUser;
+import wanted.preonboarding.assignment.dto.PostDto;
 import wanted.preonboarding.assignment.service.PostService;
 
 import java.util.List;
 
+import static wanted.preonboarding.assignment.dto.PostDto.*;
 import static wanted.preonboarding.assignment.dto.PostDto.PostRequest;
 import static wanted.preonboarding.assignment.dto.PostDto.PostResponse;
 
@@ -33,7 +35,7 @@ public class PostController implements PostApi {
   }
 
   @Override
-  public List<PostResponse> getPostsList(long cursorId, int pageSize) {
+  public List<PostSimpleResponse> getPostsList(long cursorId, int pageSize) {
     return null;
   }
 

@@ -33,7 +33,7 @@ public interface PostApi {
   @Operation(summary = "게시글 목록 조회")
   @ApiResponse(responseCode = "200", description = "게시글 목록 조회 성공")
   @GetMapping
-  List<PostDto.PostResponse> getPostsList(
+  List<PostDto.PostSimpleResponse> getPostsList(
       @Parameter(description = "커서 페이징에서 생략할 게시글 ID") @RequestParam long cursorId,
       @Parameter(description = "페이지당 아이템 개수") @RequestParam int pageSize
   );

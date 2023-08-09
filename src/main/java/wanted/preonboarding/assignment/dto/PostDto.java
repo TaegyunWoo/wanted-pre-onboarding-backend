@@ -40,4 +40,20 @@ public class PostDto {
     @Schema(description = "게시글 작성자")
     private UserResponse author;
   }
+
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  public static class PostSimpleResponse {
+    @Schema(description = "게시글 PK")
+    private long id;
+    @Schema(description = "게시글 제목")
+    private String title;
+    @Schema(description = "게시글 조회수")
+    private int views;
+    @Schema(description = "게시글 작성자")
+    private UserResponse author;
+  }
 }
