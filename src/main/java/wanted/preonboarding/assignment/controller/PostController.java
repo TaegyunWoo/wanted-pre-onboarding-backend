@@ -1,3 +1,10 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.controller
+ * fileName       : PostController
+ * author         : 우태균
+ * date           : 2023/08/09
+ * description    : 게시글 컨트롤러
+ */
 package wanted.preonboarding.assignment.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +22,11 @@ import static wanted.preonboarding.assignment.dto.PostDto.PostResponse;
 public class PostController implements PostApi {
   private final PostService postService;
 
+  /**
+   * 새로운 게시글 작성 핸들러
+   * @param postRequest 작성할 게시글 내용
+   * @param loginUser 요청한 사용자
+   */
   @Override
   public void postNewPost(PostRequest postRequest, LoginUser loginUser) {
     postService.saveNewPost(postRequest, loginUser.getId());
