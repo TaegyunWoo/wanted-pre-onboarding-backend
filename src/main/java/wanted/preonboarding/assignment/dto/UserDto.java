@@ -27,4 +27,16 @@ public class UserDto {
     @Length(min = 8)
     private String rawPassword;
   }
+
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  public static class UserResponse {
+    @Schema(description = "사용자 PK")
+    private long id;
+    @Schema(description = "사용자 계정 ID")
+    private String accountId;
+  }
 }
