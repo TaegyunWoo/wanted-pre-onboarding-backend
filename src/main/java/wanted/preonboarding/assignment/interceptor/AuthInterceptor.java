@@ -43,8 +43,6 @@ public class AuthInterceptor implements HandlerInterceptor {
     //HttpServletRequest의 attribute에 User PK값 추가
     request.setAttribute(USER_PK_ATTRIBUTE_NAME, userPk);
 
-    log.info("interceptor:" + userPk);
-
     return true;
   }
 }
