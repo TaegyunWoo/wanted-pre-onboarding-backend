@@ -3,6 +3,7 @@ package wanted.preonboarding.assignment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import wanted.preonboarding.assignment.dto.LoginUser;
+import wanted.preonboarding.assignment.service.PostService;
 
 import java.util.List;
 
@@ -12,9 +13,11 @@ import static wanted.preonboarding.assignment.dto.PostDto.PostResponse;
 @RequiredArgsConstructor
 @RestController
 public class PostController implements PostApi {
+  private final PostService postService;
+
   @Override
   public void postNewPost(PostRequest postRequest, LoginUser loginUser) {
-
+    postService.saveNewPost(postRequest, loginUser.getId());
   }
 
   @Override

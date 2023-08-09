@@ -29,7 +29,8 @@ public enum ErrorCode {
 
   //사용자
   DUPLICATED_ACCOUNT_ID(400, "U001", "That account ID is already exists"),
-  INVALID_SIGN_IN_INFO(401, "U002", "Requested sign-in information is not valid")
+  INVALID_SIGN_IN_INFO(401, "U002", "Requested sign-in information is not valid"),
+  NOT_FOUND_CURRENT_USER(404, "U003", "Current user is not found")
   ;
 
 

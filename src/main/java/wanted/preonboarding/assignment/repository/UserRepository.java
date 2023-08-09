@@ -30,6 +30,16 @@ public class UserRepository {
   }
 
   /**
+   * User의 pk(id)로 조회하는 메서드
+   * @param pk 조회할 pk
+   * @return 조회 결과
+   */
+  public Optional<User> findById(long pk) {
+    User user = entityManager.find(User.class, pk);
+    return Optional.ofNullable(user);
+  }
+
+  /**
    * User의 accountId로 조회하는 메서드
    * @param accountId 조회할 accountId
    * @return 조회 결과
