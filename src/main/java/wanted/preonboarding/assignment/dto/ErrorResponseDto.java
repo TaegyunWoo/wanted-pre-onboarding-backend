@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import wanted.preonboarding.assignment.exception.ErrorCode;
 
 import java.util.ArrayList;
@@ -30,6 +31,15 @@ public class ErrorResponseDto {
     bindingResult.getFieldErrors().stream()
         .map(f -> new FieldError(f))
         .forEach(dto.fieldErrors::add);
+    return dto;
+  }
+
+  public static ErrorResponseDto of(MethodArgumentTypeMismatchException e) {
+    ErrorResponseDto dto = new ErrorResponseDto(ErrorCode.INVALID_INPUT_TYPE);
+    String parameterName = e.getParameter().getParameterName();
+    String parameterType = e.getParameter().getParameterType().getName();
+    FieldError fieldError = new FieldError(parameterName, "fieldType=" + parameterType + ", yourValue=" + e.getValue());
+    dto.getFieldErrors().add(fieldError);
     return dto;
   }
 

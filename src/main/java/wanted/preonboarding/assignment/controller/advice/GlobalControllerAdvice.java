@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import wanted.preonboarding.assignment.dto.ErrorResponseDto;
 import wanted.preonboarding.assignment.exception.BusinessException;
 
@@ -29,6 +30,18 @@ public class GlobalControllerAdvice {
   protected ResponseEntity<ErrorResponseDto> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
     log.error("handleMethodArgumentNotValidException", e);
     ErrorResponseDto dto = ErrorResponseDto.of(e.getBindingResult());
+    return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+  }
+
+  /**
+   * 파라미터 바인딩 타입 불일치 오류 처리
+   * @param e 관련 예외 객체
+   * @return 오류 응답
+   */
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  protected ResponseEntity<ErrorResponseDto> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+    log.error("handleMethodArgumentTypeMismatchException", e);
+    ErrorResponseDto dto = ErrorResponseDto.of(e);
     return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
   }
 

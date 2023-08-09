@@ -15,6 +15,7 @@ import lombok.ToString;
 public enum ErrorCode {
   //공통
   INVALID_INPUT_VALUE(400, "C001", "Input value is rejected"),
+  INVALID_INPUT_TYPE(400, "C002", "Input type is invalid"),
 
   //인증
   NO_AUTH_HEADER(401, "A001", "Authorization header is empty"),
