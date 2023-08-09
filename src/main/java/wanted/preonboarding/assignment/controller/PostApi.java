@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+import wanted.preonboarding.assignment.dto.LoginUser;
 import wanted.preonboarding.assignment.dto.PostDto;
 
 import javax.validation.Valid;
@@ -25,8 +26,9 @@ public interface PostApi {
   @ApiResponse(responseCode = "200", description = "게시글 생성 성공")
   @PostMapping
   void postNewPost(
-      @RequestBody @Valid PostDto.PostRequest postRequest
-  );
+      @RequestBody @Valid PostDto.PostRequest postRequest,
+      @Parameter(hidden = true) LoginUser loginUser
+      );
 
   @Operation(summary = "게시글 목록 조회")
   @ApiResponse(responseCode = "200", description = "게시글 목록 조회 성공")
@@ -48,13 +50,15 @@ public interface PostApi {
   @PatchMapping("/{postId}")
   void patchPost(
       @Parameter(description = "수정할 게시글 ID") @PathVariable long postId,
-      @Parameter(description = "수정할 내용") @RequestBody PostDto.PostRequest postRequest
+      @Parameter(description = "수정할 내용") @RequestBody PostDto.PostRequest postRequest,
+      @Parameter(hidden = true) LoginUser loginUser
   );
 
   @Operation(summary = "특정 게시글 삭제")
   @ApiResponse(responseCode = "200", description = "게시글 삭제 성공")
   @DeleteMapping("/{postId}")
   void deletePost(
-      @Parameter(description = "삭제할 게시글 ID") @PathVariable long postId
+      @Parameter(description = "삭제할 게시글 ID") @PathVariable long postId,
+      @Parameter(hidden = true) LoginUser loginUser
   );
 }
