@@ -8,7 +8,7 @@ import wanted.preonboarding.assignment.domain.Post;
 import wanted.preonboarding.assignment.domain.User;
 import wanted.preonboarding.assignment.dto.PostDto;
 
-@Mapper(builder = @Builder(disableBuilder = true))
+@Mapper(uses = {UserMapper.class}, builder = @Builder(disableBuilder = true))
 public interface PostMapper {
   PostMapper INSTANCE = Mappers.getMapper(PostMapper.class);
 
@@ -18,4 +18,10 @@ public interface PostMapper {
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "views", constant = "0")
   Post toEntity(PostDto.PostRequest requestDto, User authorEntity);
+
+  @Mapping(source = "id", target = "id")
+  @Mapping(source = "title", target = "title")
+  @Mapping(source = "views", target = "views")
+  @Mapping(source = "author", target = "author", qualifiedByName = {"toUserResponseDtoByUser"})
+  PostDto.PostSimpleResponse toSimpleResponseDto(Post entity);
 }

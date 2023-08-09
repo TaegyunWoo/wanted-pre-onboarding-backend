@@ -10,6 +10,7 @@ package wanted.preonboarding.assignment.mapper;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import wanted.preonboarding.assignment.domain.User;
 import wanted.preonboarding.assignment.dto.UserDto;
@@ -21,4 +22,9 @@ public interface UserMapper {
   @Mapping(source = "dto.accountId", target = "accountId")
   @Mapping(source = "encodedPassword", target = "password")
   User toEntity(UserDto.UserRequest dto, String encodedPassword);
+
+  @Named("toUserResponseDtoByUser")
+  @Mapping(source = "id", target = "id")
+  @Mapping(source = "accountId", target = "accountId")
+  UserDto.UserResponse toResponseDto(User entity);
 }
