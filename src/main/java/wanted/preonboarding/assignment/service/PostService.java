@@ -18,7 +18,10 @@ import wanted.preonboarding.assignment.mapper.PostMapper;
 import wanted.preonboarding.assignment.repository.PostRepository;
 import wanted.preonboarding.assignment.repository.UserRepository;
 
-import static wanted.preonboarding.assignment.dto.PostDto.PostRequest;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static wanted.preonboarding.assignment.dto.PostDto.*;
 
 @AllArgsConstructor
 @Service
@@ -26,6 +29,11 @@ public class PostService {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
 
+  /**
+   * 새 게시글을 저장하는 메서드
+   * @param postRequest 새 게시글 정보
+   * @param authorPk 작성자 PK(ID)
+   */
   @Transactional
   public void saveNewPost(PostRequest postRequest, long authorPk) {
     User authorEntity = userRepository.findById(authorPk).orElseThrow(
@@ -33,5 +41,24 @@ public class PostService {
     );
     Post postEntity = PostMapper.INSTANCE.toEntity(postRequest, authorEntity);
     postRepository.save(postEntity);
+  }
+
+  /**
+   * 게시글 목록을 조회하는 메서드
+   * @param paginationRequest 페이징 처리 정보
+   * @return 해당 페이지에 해당하는 게시글 List
+   */
+  @Transactional(readOnly = true)
+  public List<PostSimpleResponse> inquiryPostList(PaginationRequest paginationRequest) {
+    long cursorId = paginationRequest.getCursorId();
+    int pageSize = paginationRequest.getPageSize();
+    List<Post> postEntityList = postRepository.findWithPagination(cursorId, pageSize);
+
+    //List<Post> -> List<PostSimpleResponse>
+    List<PostSimpleResponse> responses = postEntityList.stream()
+        .map(PostMapper.INSTANCE::toSimpleResponseDto)
+        .collect(Collectors.toList());
+
+    return responses;
   }
 }

@@ -31,9 +31,15 @@ public class PostController implements PostApi {
     postService.saveNewPost(postRequest, loginUser.getId());
   }
 
+  /**
+   * 페이징된 게시글 목록 조회 핸들러
+   * @param paginationRequest 페이징 정보
+   * @return 게시글 목록
+   */
   @Override
   public List<PostSimpleResponse> getPostsList(PaginationRequest paginationRequest) {
-    return null;
+    List<PostSimpleResponse> responses = postService.inquiryPostList(paginationRequest);
+    return responses;
   }
 
   @Override
