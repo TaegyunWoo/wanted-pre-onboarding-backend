@@ -65,8 +65,8 @@ public class PostDto {
   @AllArgsConstructor
   @Builder
   public static class PaginationRequest {
-    @Schema(description = "생략할 기준 게시글 ID (0 이상)")
-    @Min(0)
+    @Schema(description = "생략할 기준 게시글 ID (-1 이상, -1인 경우 가장 최근 게시글부터 조회)")
+    @Min(-1)
     private long cursorId;
     @Schema(description = "한 페이지에 포함시킬 게시글 개수 (1~100)")
     @Min(1) @Max(100)

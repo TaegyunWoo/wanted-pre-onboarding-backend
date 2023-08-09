@@ -28,7 +28,7 @@ public class PostRepository {
   }
 
   /**
-   * 게시글 엔티티들을 커서 기반 페이징으로 조회
+   * 게시글 엔티티들을 커서 기반 페이징으로 조회 (내림차순)
    * @param cursorId 기준 엔티티 PK(ID)
    * @param size 페이지당 아이템 개수
    * @return 페이징된 게시글 엔티티들
@@ -36,11 +36,27 @@ public class PostRepository {
   public List<Post> findWithPagination(long cursorId, int size) {
     String jpql = """
                   select p from Post p
-                   where p.id > :cursorId
-                   order by p.id asc
+                   where p.id < :cursorId
+                   order by p.id desc
                   """;
     List<Post> result = entityManager.createQuery(jpql, Post.class)
         .setParameter("cursorId", cursorId)
+        .setMaxResults(size)
+        .getResultList();
+    return result;
+  }
+
+  /**
+   * 가장 최근 게시글 엔티티들을 조회
+   * @param size 페이지당 아이템 개수
+   * @return 가장 최근 게시글 엔티티들
+   */
+  public List<Post> findRecency(int size) {
+    String jpql = """
+                  select p from Post p
+                   order by p.id desc
+                  """;
+    List<Post> result = entityManager.createQuery(jpql, Post.class)
         .setMaxResults(size)
         .getResultList();
     return result;

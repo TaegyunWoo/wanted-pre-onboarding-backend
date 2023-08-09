@@ -52,7 +52,13 @@ public class PostService {
   public List<PostSimpleResponse> inquiryPostList(PaginationRequest paginationRequest) {
     long cursorId = paginationRequest.getCursorId();
     int pageSize = paginationRequest.getPageSize();
-    List<Post> postEntityList = postRepository.findWithPagination(cursorId, pageSize);
+    List<Post> postEntityList;
+
+    if (cursorId == -1) { //가장 최근 게시글부터 조회한다면
+      postEntityList = postRepository.findRecency(pageSize);
+    } else { //페이징 기준 게시글이 있다면
+      postEntityList = postRepository.findWithPagination(cursorId, pageSize);
+    }
 
     //List<Post> -> List<PostSimpleResponse>
     List<PostSimpleResponse> responses = postEntityList.stream()
