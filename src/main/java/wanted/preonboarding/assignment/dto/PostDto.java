@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import static wanted.preonboarding.assignment.dto.UserDto.UserResponse;
@@ -55,5 +57,19 @@ public class PostDto {
     private int views;
     @Schema(description = "게시글 작성자")
     private UserResponse author;
+  }
+
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  public static class PaginationRequest {
+    @Schema(description = "생략할 기준 게시글 ID (0 이상)")
+    @Min(0)
+    private long cursorId;
+    @Schema(description = "한 페이지에 포함시킬 게시글 개수 (1~100)")
+    @Min(1) @Max(100)
+    private int pageSize;
   }
 }
