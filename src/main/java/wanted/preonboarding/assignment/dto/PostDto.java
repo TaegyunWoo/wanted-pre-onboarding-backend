@@ -8,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
+
 import static wanted.preonboarding.assignment.dto.UserDto.UserResponse;
 
 public class PostDto {
@@ -41,6 +43,10 @@ public class PostDto {
     private int views;
     @Schema(description = "게시글 작성자")
     private UserResponse author;
+    @Schema(description = "게시글 작성일")
+    private LocalDateTime createdDate;
+    @Schema(description = "게시글 수정일")
+    private LocalDateTime modifiedDate;
   }
 
   @Getter
@@ -57,6 +63,10 @@ public class PostDto {
     private int views;
     @Schema(description = "게시글 작성자")
     private UserResponse author;
+    @Schema(description = "게시글 작성일")
+    private LocalDateTime createdDate;
+    @Schema(description = "게시글 수정일")
+    private LocalDateTime modifiedDate;
   }
 
   @Getter
