@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
+  public static final String USER_PK_ATTRIBUTE_NAME = "userPk";
   private final TokenService tokenService;
 
   @Override
@@ -40,7 +41,9 @@ public class AuthInterceptor implements HandlerInterceptor {
     long userPk = tokenService.validateToken(accessTokenValue);
 
     //HttpServletRequest의 attribute에 User PK값 추가
-    request.setAttribute("userPk", userPk);
+    request.setAttribute(USER_PK_ATTRIBUTE_NAME, userPk);
+
+    log.info("interceptor:" + userPk);
 
     return true;
   }
