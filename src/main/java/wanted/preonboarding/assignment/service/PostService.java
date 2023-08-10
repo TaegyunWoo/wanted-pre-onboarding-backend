@@ -101,14 +101,42 @@ public class PostService {
     );
 
     //Author Checking
-    User requestUser = userRepository.findById(loginUserId).orElseThrow(
-        () -> new InvalidValueException(ErrorCode.NOT_FOUND_CURRENT_USER)
-    );
-    if (targetPostEntity.getAuthor() != requestUser) { //해당 게시글의 작성자가 아닌 경우
-      throw new InvalidValueException(ErrorCode.AUTHOR_NOT_MATCHED);
-    }
+    isSameAuthor(loginUserId, targetPostEntity);
 
     //Update
     PostMapper.INSTANCE.updateEntity(postRequest, targetPostEntity);
+  }
+
+  /**
+   * 게시글 삭제 메서드
+   * @param postId 삭제할 게시글의 ID(PK)
+   * @param loginUserId 삭제를 요청한 로그인된 사용자의 ID(PK)
+   */
+  @Transactional
+  public void deletePost(long postId, long loginUserId) {
+    //Get Target Post Entity
+    Post targetPostEntity = postRepository.findById(postId).orElseThrow(
+        () -> new InvalidValueException(ErrorCode.NOT_FOUND_POST)
+    );
+
+    //Author Checking
+    isSameAuthor(loginUserId, targetPostEntity);
+
+    //Delete
+    postRepository.delete(targetPostEntity);
+  }
+
+  /**
+   * 같은 사용자인지 확인하는 메서드
+   * @param loginUserId 로그인된 사용자의 ID(PK)
+   * @param postEntity 확인할 게시글 엔티티
+   */
+  private void isSameAuthor(long loginUserId, Post postEntity) {
+    User requestUser = userRepository.findById(loginUserId).orElseThrow(
+        () -> new InvalidValueException(ErrorCode.NOT_FOUND_CURRENT_USER)
+    );
+    if (postEntity.getAuthor() != requestUser) { //해당 게시글의 작성자가 아닌 경우
+      throw new InvalidValueException(ErrorCode.AUTHOR_NOT_MATCHED);
+    }
   }
 }

@@ -64,8 +64,13 @@ public class PostController implements PostApi {
     postService.updatePost(postId, postRequest, loginUser.getId());
   }
 
+  /**
+   * 게시글 삭제 핸들러
+   * @param postId 삭제할 게시글의 ID(PK)
+   * @param loginUser 로그인된 사용자
+   */
   @Override
   public void deletePost(long postId, LoginUser loginUser) {
-
+    postService.deletePost(postId, loginUser.getId());
   }
 }

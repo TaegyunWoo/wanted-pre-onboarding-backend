@@ -71,4 +71,12 @@ public class PostRepository {
   public Optional<Post> findById(long pk) {
     return Optional.ofNullable(entityManager.find(Post.class, pk));
   }
+
+  /**
+   * 게시글을 삭제하는 메서드
+   * @param post 삭제할 게시글
+   */
+  public void delete(Post post) {
+    entityManager.remove(post);
+  }
 }
