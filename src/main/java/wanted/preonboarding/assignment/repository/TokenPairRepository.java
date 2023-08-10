@@ -20,11 +20,19 @@ public class TokenPairRepository {
   @PersistenceContext
   private EntityManager entityManager;
 
+  /**
+   * 토큰쌍 저장 메서드
+   * @param tokenPair 저장할 토큰쌍 엔티티
+   */
   public void save(TokenPair tokenPair) {
     entityManager.persist(tokenPair);
   }
 
-
+  /**
+   * 사용자 ID(PK)로 토큰쌍 조회 메서드
+   * @param userPk 사용자 ID(PK)
+   * @return
+   */
   public Optional<TokenPair> findByUserId(long userPk) {
     String jpql = """
                   select t from TokenPair t
@@ -41,6 +49,10 @@ public class TokenPairRepository {
     }
   }
 
+  /**
+   * 토큰쌍 제거 메서드
+   * @param tokenPair 제거할 토큰쌍 엔티티
+   */
   public void delete(TokenPair tokenPair) {
     entityManager.remove(tokenPair);
   }
