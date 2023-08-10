@@ -53,9 +53,15 @@ public class PostController implements PostApi {
     return response;
   }
 
+  /**
+   * 게시글 수정 핸들러
+   * @param postId 수정할 게시글의 ID(PK)
+   * @param postRequest 수정할 내용
+   * @param loginUser 로그인된 사용자
+   */
   @Override
   public void patchPost(long postId, PostRequest postRequest, LoginUser loginUser) {
-
+    postService.updatePost(postId, postRequest, loginUser.getId());
   }
 
   @Override

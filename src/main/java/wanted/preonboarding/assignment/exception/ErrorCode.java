@@ -33,7 +33,8 @@ public enum ErrorCode {
   NOT_FOUND_CURRENT_USER(404, "U003", "Current user is not found"),
 
   //게시글
-  NOT_FOUND_POST(404, "P001", "Cannot find post")
+  NOT_FOUND_POST(404, "P001", "Cannot find post"),
+  AUTHOR_NOT_MATCHED(403, "P002", "This operation is only for target's author")
   ;
 
 

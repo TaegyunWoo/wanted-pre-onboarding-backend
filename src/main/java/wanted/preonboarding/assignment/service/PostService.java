@@ -86,4 +86,29 @@ public class PostService {
     PostResponse response = PostMapper.INSTANCE.toResponseDto(postEntity);
     return response;
   }
+
+  /**
+   * 게시글 수정 메서드
+   * @param postId 수정할 게시글 ID(PK)
+   * @param postRequest 수정 정보
+   * @param loginUserId 수정을 요청한 로그인된 사용자의 ID(PK)
+   */
+  @Transactional
+  public void updatePost(long postId, PostRequest postRequest, long loginUserId) {
+    //Get Target Post Entity
+    Post targetPostEntity = postRepository.findById(postId).orElseThrow(
+        () -> new InvalidValueException(ErrorCode.NOT_FOUND_POST)
+    );
+
+    //Author Checking
+    User requestUser = userRepository.findById(loginUserId).orElseThrow(
+        () -> new InvalidValueException(ErrorCode.NOT_FOUND_CURRENT_USER)
+    );
+    if (targetPostEntity.getAuthor() != requestUser) { //해당 게시글의 작성자가 아닌 경우
+      throw new InvalidValueException(ErrorCode.AUTHOR_NOT_MATCHED);
+    }
+
+    //Update
+    PostMapper.INSTANCE.updateEntity(postRequest, targetPostEntity);
+  }
 }

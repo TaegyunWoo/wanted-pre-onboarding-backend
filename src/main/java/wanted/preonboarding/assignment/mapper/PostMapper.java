@@ -1,8 +1,6 @@
 package wanted.preonboarding.assignment.mapper;
 
-import org.mapstruct.Builder;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 import wanted.preonboarding.assignment.domain.Post;
 import wanted.preonboarding.assignment.domain.User;
@@ -35,4 +33,7 @@ public interface PostMapper {
   @Mapping(source = "createdDate", target = "createdDate")
   @Mapping(source = "modifiedDate", target = "modifiedDate")
   PostDto.PostResponse toResponseDto(Post entity);
+
+  @InheritConfiguration
+  void updateEntity(PostDto.PostRequest requestDto, @MappingTarget Post entity);
 }
