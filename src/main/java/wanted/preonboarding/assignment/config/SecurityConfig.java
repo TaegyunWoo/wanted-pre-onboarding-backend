@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.config
  * fileName       : SecurityConfig
  * author         : 우태균
- * date           : 2023/08/06
  * description    : Spring Security 설정
  */
 package wanted.preonboarding.assignment.config;

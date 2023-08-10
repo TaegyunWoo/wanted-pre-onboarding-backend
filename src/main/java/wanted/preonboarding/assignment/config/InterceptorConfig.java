@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.config
  * fileName       : InterceptorConfig
  * author         : 우태균
- * date           : 2023/08/08
  * description    : 인터셉터 관련 Config
  */
 package wanted.preonboarding.assignment.config;

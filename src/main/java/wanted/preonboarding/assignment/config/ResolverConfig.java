@@ -1,3 +1,9 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.config
+ * fileName       : ResolverConfig
+ * author         : 우태균
+ * description    : 리졸버 관련 Config
+ */
 package wanted.preonboarding.assignment.config;
 
 import lombok.RequiredArgsConstructor;
