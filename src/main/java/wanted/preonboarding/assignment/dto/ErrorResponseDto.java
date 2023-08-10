@@ -6,6 +6,7 @@
  */
 package wanted.preonboarding.assignment.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ErrorResponseDto {
+  @Schema(description = "발생한 에러의 메시지")
   private String message;
+  @Schema(description = "서비스 오류코드")
   private String code;
+  @Schema(description = "관련된 input 필드")
   private List<FieldError> fieldErrors;
 
   public static ErrorResponseDto of(BindingResult bindingResult) {
@@ -52,7 +56,9 @@ public class ErrorResponseDto {
   @Setter
   @AllArgsConstructor
   public static class FieldError {
+    @Schema(description = "오류가 발생한 input 필드명")
     private String field;
+    @Schema(description = "오류 발생 이유")
     private String reason;
 
     public FieldError(org.springframework.validation.FieldError info) {
