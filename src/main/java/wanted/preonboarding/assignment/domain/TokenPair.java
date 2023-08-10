@@ -2,7 +2,7 @@
  * packageName    : wanted.preonboarding.assignment.domain
  * fileName       : TokenPair
  * author         : 우태균
- * description    : TokenPair 엔티티 for Redis
+ * description    : TokenPair 엔티티
  */
 package wanted.preonboarding.assignment.domain;
 
