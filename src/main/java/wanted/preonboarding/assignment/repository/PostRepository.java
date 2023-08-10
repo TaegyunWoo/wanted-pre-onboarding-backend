@@ -13,6 +13,7 @@ import wanted.preonboarding.assignment.domain.Post;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PostRepository {
@@ -60,5 +61,14 @@ public class PostRepository {
         .setMaxResults(size)
         .getResultList();
     return result;
+  }
+
+  /**
+   * 게시글 ID(PK)으로 특정 게시글을 조회하는 메서드
+   * @param pk 조회할 게시글 ID(PK)
+   * @return 조회 결과
+   */
+  public Optional<Post> findById(long pk) {
+    return Optional.ofNullable(entityManager.find(Post.class, pk));
   }
 }

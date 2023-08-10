@@ -67,4 +67,20 @@ public class PostService {
 
     return responses;
   }
+
+  /**
+   * 특정 게시글을 조회하는 메서드
+   * @param postId 조회할 게시글 ID(PK)
+   * @return 조회된 게시글 정보
+   */
+  @Transactional(readOnly = true)
+  public PostResponse inquiryPost(long postId) {
+    Post postEntity = postRepository.findById(postId).orElseThrow(
+        () -> new InvalidValueException(ErrorCode.NOT_FOUND_POST)
+    );
+
+    //Post -> PostResponse
+    PostResponse response = PostMapper.INSTANCE.toResponseDto(postEntity);
+    return response;
+  }
 }

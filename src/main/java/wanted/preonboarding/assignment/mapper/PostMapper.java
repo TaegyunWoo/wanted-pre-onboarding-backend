@@ -26,4 +26,13 @@ public interface PostMapper {
   @Mapping(source = "createdDate", target = "createdDate")
   @Mapping(source = "modifiedDate", target = "modifiedDate")
   PostDto.PostSimpleResponse toSimpleResponseDto(Post entity);
+
+  @Mapping(source = "id", target = "id")
+  @Mapping(source = "title", target = "title")
+  @Mapping(source = "body", target = "body")
+  @Mapping(source = "views", target = "views")
+  @Mapping(source = "author", target = "author", qualifiedByName = {"toUserResponseDtoByUser"})
+  @Mapping(source = "createdDate", target = "createdDate")
+  @Mapping(source = "modifiedDate", target = "modifiedDate")
+  PostDto.PostResponse toResponseDto(Post entity);
 }

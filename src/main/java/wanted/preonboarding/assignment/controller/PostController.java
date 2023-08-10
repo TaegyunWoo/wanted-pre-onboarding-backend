@@ -42,9 +42,15 @@ public class PostController implements PostApi {
     return responses;
   }
 
+  /**
+   * 특정 게시글 조회 핸들러
+   * @param postId 조회할 게시글의 ID(PK)
+   * @return 조회된 게시글 정보
+   */
   @Override
   public PostResponse getPost(long postId) {
-    return null;
+    PostResponse response = postService.inquiryPost(postId);
+    return response;
   }
 
   @Override
