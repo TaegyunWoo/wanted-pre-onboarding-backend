@@ -8,18 +8,32 @@ package wanted.preonboarding.assignment.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.*;
 
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@RedisHash("TokenPair") //key prefix
-public class TokenPair {
-  @Id
-  private long userPk;
+@SuperBuilder
+@Table(name = "TOKEN_PAIR")
+@Entity
+public class TokenPair extends BaseTimeEntity {
+  @Id @GeneratedValue
+  private Long id;
+  @Column(nullable = false)
   private String accessToken;
+  @Column(nullable = false)
   private String refreshToken;
+  @OneToOne(optional = false)
+  private User user;
+
+  public void updateTokenPair(String accessToken, String refreshToken) {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+  }
 }

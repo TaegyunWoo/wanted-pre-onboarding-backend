@@ -6,14 +6,17 @@
  */
 package wanted.preonboarding.assignment.mapper;
 
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 import wanted.preonboarding.assignment.domain.TokenPair;
+import wanted.preonboarding.assignment.domain.User;
 
 import static wanted.preonboarding.assignment.dto.TokenDto.TokenResponse;
 
-@Mapper
+@Mapper(builder = @Builder(disableBuilder = true))
 public interface TokenPairMapper {
   TokenPairMapper INSTANCE = Mappers.getMapper(TokenPairMapper.class);
 
@@ -23,6 +26,10 @@ public interface TokenPairMapper {
 
   @Mapping(source = "accessToken", target = "accessToken")
   @Mapping(source = "refreshToken", target = "refreshToken")
-  @Mapping(source = "userPk", target = "userPk")
-  TokenPair toEntity(String accessToken, String refreshToken, long userPk);
+  @Mapping(target = "id", ignore = true)
+  TokenPair toEntity(String accessToken, String refreshToken, User user);
+
+  @Mapping(source = "accessToken", target = "accessToken")
+  @Mapping(source = "refreshToken", target = "refreshToken")
+  void updateEntity(String accessToken, String refreshToken, @MappingTarget TokenPair entity);
 }

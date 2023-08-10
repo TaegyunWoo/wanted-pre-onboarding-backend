@@ -16,9 +16,11 @@ import wanted.preonboarding.assignment.exception.ErrorCode;
 import wanted.preonboarding.assignment.exception.InvalidValueException;
 import wanted.preonboarding.assignment.mapper.TokenPairMapper;
 import wanted.preonboarding.assignment.mapper.UserMapper;
-import wanted.preonboarding.assignment.repository.TokenPairRedisRepository;
+import wanted.preonboarding.assignment.repository.TokenPairRepository;
 import wanted.preonboarding.assignment.repository.UserRepository;
 import wanted.preonboarding.assignment.utils.jwt.JwtTokenIssuer;
+
+import java.util.Optional;
 
 import static wanted.preonboarding.assignment.dto.TokenDto.TokenResponse;
 import static wanted.preonboarding.assignment.dto.UserDto.UserRequest;
@@ -29,7 +31,7 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenIssuer jwtTokenIssuer;
   private final UserRepository userRepository;
-  private final TokenPairRedisRepository tokenPairRedisRepository;
+  private final TokenPairRepository tokenPairRepository;
 
   /**
    * 새로운 사용자를 등록(생성)하는 메서드
@@ -52,7 +54,7 @@ public class UserService {
     userRepository.save(userEntity);
   }
 
-  @Transactional(readOnly = true)
+  @Transactional
   public TokenResponse signIn(UserRequest request) {
     //사용자 로그인 정보 검증
     User user = validateSignInUser(request);
@@ -62,8 +64,13 @@ public class UserService {
     String refreshToken = jwtTokenIssuer.createToken(user.getId(), true);
 
     //토큰 저장
-    TokenPair tokenPair = TokenPairMapper.INSTANCE.toEntity(accessToken, refreshToken, user.getId());
-    tokenPairRedisRepository.save(tokenPair);
+    TokenPair tokenPair = tokenPairRepository.findByUserId(user.getId()).orElse(null);
+    if (tokenPair == null) { //이미 저장된 토큰이 없다면
+      tokenPair = TokenPairMapper.INSTANCE.toEntity(accessToken, refreshToken, user);
+      tokenPairRepository.save(tokenPair);
+    } else { //이미 저장된 토큰이 있다면
+      TokenPairMapper.INSTANCE.updateEntity(accessToken, refreshToken, tokenPair);
+    }
 
     return TokenPairMapper.INSTANCE.toResponseDto(tokenPair);
   }

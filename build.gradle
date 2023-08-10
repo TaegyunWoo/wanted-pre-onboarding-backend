@@ -31,7 +31,6 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
-	compileOnly 'it.ozimov:embedded-redis:0.7.2'
 	compileOnly 'org.projectlombok:lombok'
 
 	runtimeOnly 'com.h2database:h2'
@@ -42,7 +41,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testCompileOnly 'org.projectlombok:lombok'
-	testCompileOnly 'it.ozimov:embedded-redis:0.7.2'
 
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
