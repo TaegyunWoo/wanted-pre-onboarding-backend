@@ -33,6 +33,6 @@ public class User extends BaseTimeEntity {
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Post> postList = new ArrayList<>();
 
-  @OneToOne(mappedBy = "user")
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private TokenPair tokenPair;
 }
