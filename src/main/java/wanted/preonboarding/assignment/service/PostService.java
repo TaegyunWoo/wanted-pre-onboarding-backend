@@ -73,11 +73,14 @@ public class PostService {
    * @param postId 조회할 게시글 ID(PK)
    * @return 조회된 게시글 정보
    */
-  @Transactional(readOnly = true)
+  @Transactional
   public PostResponse inquiryPost(long postId) {
     Post postEntity = postRepository.findById(postId).orElseThrow(
         () -> new InvalidValueException(ErrorCode.NOT_FOUND_POST)
     );
+
+    //조회수 증가
+    postEntity.increaseViews();
 
     //Post -> PostResponse
     PostResponse response = PostMapper.INSTANCE.toResponseDto(postEntity);
