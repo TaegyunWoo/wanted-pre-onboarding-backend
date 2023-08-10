@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.service
  * fileName       : UserService
  * author         : 우태균
- * date           : 2023/08/06
  * description    : 사용자 Service
  */
 package wanted.preonboarding.assignment.service;

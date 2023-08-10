@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.mapper
  * fileName       : UserMapper
  * author         : 우태균
- * date           : 2023/08/06
  * description    : 사용자 엔티티·DTO 객체 간 매핑 로직 자동화
  */
 package wanted.preonboarding.assignment.mapper;

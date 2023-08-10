@@ -2,8 +2,7 @@
  * packageName    : wanted.preonboarding.assignment.service
  * fileName       : PostService
  * author         : 우태균
- * date           : 2023/08/09
- * description    : 게시 Service
+ * description    : 게시글 Service
  */
 package wanted.preonboarding.assignment.service;
 

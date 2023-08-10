@@ -2,8 +2,7 @@
  * packageName    : wanted.preonboarding.assignment.utils.jwt
  * fileName       : JwtTokenIssuer
  * author         : 우태균
- * date           : 2023/08/07
- * description    : JWT Token 발급자
+ * description    : JWT Token 발급 컴포넌트
  */
 package wanted.preonboarding.assignment.utils.jwt;
 

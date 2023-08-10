@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.repository
  * fileName       : PostRepository
  * author         : 우태균
- * date           : 2023/08/09
  * description    : 게시글 Repository
  */
 package wanted.preonboarding.assignment.repository;

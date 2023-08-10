@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.controller.advice
  * fileName       : GlobalControllerAdvice
  * author         : 우태균
- * date           : 2023/08/07
  * description    : 공통 오류응답 처리 ControllerAdvice
  */
 package wanted.preonboarding.assignment.controller.advice;

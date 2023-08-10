@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.controller
  * fileName       : UserController
  * author         : 우태균
- * date           : 2023/08/07
  * description    : User 관련 컨트롤러. 애너테이션 정보는 UserApi 인터페이스 참고
  */
 package wanted.preonboarding.assignment.controller;

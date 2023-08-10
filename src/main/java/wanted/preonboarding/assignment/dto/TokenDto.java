@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.dto
  * fileName       : TokenDto
  * author         : 우태균
- * date           : 2023/08/07
  * description    : 인증 토큰 DTO
  */
 package wanted.preonboarding.assignment.dto;

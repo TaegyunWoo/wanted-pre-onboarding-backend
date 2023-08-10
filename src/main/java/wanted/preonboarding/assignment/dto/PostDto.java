@@ -1,3 +1,9 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.dto
+ * fileName       : PostDto
+ * author         : 우태균
+ * description    : 게시글 DTO
+ */
 package wanted.preonboarding.assignment.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;

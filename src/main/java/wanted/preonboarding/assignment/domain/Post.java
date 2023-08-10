@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.domain
  * fileName       : Post
  * author         : 우태균
- * date           : 2023/08/06
  * description    : 게시글 엔티티
  */
 package wanted.preonboarding.assignment.domain;

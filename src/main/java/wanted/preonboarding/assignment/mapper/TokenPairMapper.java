@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.mapper
  * fileName       : TokenPairMapper
  * author         : 우태균
- * date           : 2023/08/07
  * description    : 토큰쌍 Entity·DTO 객체 간 매핑 로직 자동화
  */
 package wanted.preonboarding.assignment.mapper;

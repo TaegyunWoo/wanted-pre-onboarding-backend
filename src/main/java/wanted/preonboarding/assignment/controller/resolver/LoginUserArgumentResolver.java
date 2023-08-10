@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.controller.resolver
  * fileName       : LoginUserArgumentResolver
  * author         : 우태균
- * date           : 2023/08/08
  * description    : 로그인 사용자 객체를 컨트롤러 파라미터에 넘겨주는 Argument Resolver
  */
 package wanted.preonboarding.assignment.controller.resolver;

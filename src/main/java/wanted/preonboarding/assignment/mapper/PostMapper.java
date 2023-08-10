@@ -1,3 +1,9 @@
+/**
+ * packageName    : wanted.preonboarding.assignment.mapper
+ * fileName       : PostMapper
+ * author         : 우태균
+ * description    : 게시글 Entity·DTO 객체 간 매핑 로직 자동화
+ */
 package wanted.preonboarding.assignment.mapper;
 
 import org.mapstruct.*;

@@ -2,8 +2,7 @@
  * packageName    : wanted.preonboarding.assignment.controller
  * fileName       : PostController
  * author         : 우태균
- * date           : 2023/08/09
- * description    : 게시글 컨트롤러
+ * description    : 게시글 컨트롤러. 애너테이션 정보는 PostApi 인터페이스 참고
  */
 package wanted.preonboarding.assignment.controller;
 

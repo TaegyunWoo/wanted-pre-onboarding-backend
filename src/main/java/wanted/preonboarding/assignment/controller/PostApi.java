@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.controller
  * fileName       : PostApi
  * author         : 우태균
- * date           : 2023/08/09
  * description    : Post 관련 API 인터페이스.
  *                  모든 애너테이션을 인터페이스에 모아둬, 실제 컨트롤러 가독성 개선
  */

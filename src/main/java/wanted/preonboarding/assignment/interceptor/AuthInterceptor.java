@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.interceptor
  * fileName       : AuthInterceptor
  * author         : 우태균
- * date           : 2023/08/08
  * description    : 인가 처리 인터셉터
  */
 package wanted.preonboarding.assignment.interceptor;

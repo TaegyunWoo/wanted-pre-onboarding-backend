@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.dto
  * fileName       : ErrorResponseDto
  * author         : 우태균
- * date           : 2023/08/07
  * description    : 공통 오류 응답 DTO
  */
 package wanted.preonboarding.assignment.dto;

@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.repository
  * fileName       : TokenPairRedisRepository
  * author         : 우태균
- * date           : 2023/08/07
  * description    : 토큰 Redis Repository
  */
 package wanted.preonboarding.assignment.repository;

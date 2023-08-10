@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.service
  * fileName       : TokenService
  * author         : 우태균
- * date           : 2023/08/08
  * description    : 토큰 Service
  */
 package wanted.preonboarding.assignment.service;

@@ -2,8 +2,7 @@
  * packageName    : wanted.preonboarding.assignment.utils.jwt
  * fileName       : JwtTokenParser
  * author         : 우태균
- * date           : 2023/08/08
- * description    : JWT Token 파싱 관련 클래스
+ * description    : JWT Token 파싱 컴포넌트
  */
 package wanted.preonboarding.assignment.utils.jwt;
 

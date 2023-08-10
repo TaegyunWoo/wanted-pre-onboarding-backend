@@ -2,7 +2,6 @@
  * packageName    : wanted.preonboarding.assignment.util.jpa
  * fileName       : UpperCaseNamingStrategy
  * author         : 우태균
- * date           : 2023/08/06
  * description    : JPA Configuration 에 DDL AUTO 설정시, 네이밍 전략
  *                  모두 대문자 + 언더바 조합으로 생성함
  */
