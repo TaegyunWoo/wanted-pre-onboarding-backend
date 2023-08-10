@@ -31,9 +31,4 @@ public class TokenPair extends BaseTimeEntity {
   private String refreshToken;
   @OneToOne(optional = false)
   private User user;
-
-  public void updateTokenPair(String accessToken, String refreshToken) {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
-  }
 }
