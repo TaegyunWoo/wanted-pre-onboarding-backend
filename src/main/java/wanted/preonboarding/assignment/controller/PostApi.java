@@ -23,14 +23,18 @@ import java.util.List;
 public interface PostApi {
   @Operation(summary = "새 게시글 생성")
   @ApiResponse(responseCode = "200", description = "게시글 생성 성공")
+  @ApiResponse(responseCode = "400", description = "입력 형식 오류, 조건사항 비만족")
+  @ApiResponse(responseCode = "401", description = "인증되지 않은 사용자")
   @PostMapping
   void postNewPost(
       @RequestBody @Valid PostDto.PostRequest postRequest,
       @Parameter(hidden = true) LoginUser loginUser
-      );
+  );
 
   @Operation(summary = "게시글 목록 조회")
   @ApiResponse(responseCode = "200", description = "게시글 목록 조회 성공")
+  @ApiResponse(responseCode = "400", description = "입력 형식 오류")
+  @ApiResponse(responseCode = "401", description = "인증되지 않은 사용자")
   @GetMapping
   List<PostDto.PostSimpleResponse> getPostsList(
       @ModelAttribute @Valid PostDto.PaginationRequest paginationRequest
@@ -38,6 +42,8 @@ public interface PostApi {
 
   @Operation(summary = "특정 게시글 조회")
   @ApiResponse(responseCode = "200", description = "게시글 조회 성공")
+  @ApiResponse(responseCode = "401", description = "인증되지 않은 사용자")
+  @ApiResponse(responseCode = "404", description = "존재하지 않는 게시글")
   @GetMapping("/{postId}")
   PostDto.PostResponse getPost(
       @Parameter(description = "조회할 게시글 ID") @PathVariable long postId
@@ -45,6 +51,9 @@ public interface PostApi {
 
   @Operation(summary = "특정 게시글 수정")
   @ApiResponse(responseCode = "200", description = "게시글 수정 성공")
+  @ApiResponse(responseCode = "401", description = "인증되지 않은 사용자")
+  @ApiResponse(responseCode = "403", description = "작성자와 불일치")
+  @ApiResponse(responseCode = "404", description = "존재하지 않는 게시글")
   @PatchMapping("/{postId}")
   void patchPost(
       @Parameter(description = "수정할 게시글 ID") @PathVariable long postId,
@@ -54,6 +63,9 @@ public interface PostApi {
 
   @Operation(summary = "특정 게시글 삭제")
   @ApiResponse(responseCode = "200", description = "게시글 삭제 성공")
+  @ApiResponse(responseCode = "401", description = "인증되지 않은 사용자")
+  @ApiResponse(responseCode = "403", description = "작성자와 불일치")
+  @ApiResponse(responseCode = "404", description = "존재하지 않는 게시글")
   @DeleteMapping("/{postId}")
   void deletePost(
       @Parameter(description = "삭제할 게시글 ID") @PathVariable long postId,
