@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "MEMBER")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
