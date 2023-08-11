@@ -39,6 +39,7 @@ class AuthInterceptorTest {
       authInterceptor.preHandle(request, null, null);
 
       //THEN
+      fail("preHandle() must throw InvalidValueException");
     } catch (InvalidValueException e) {
       assertEquals(ErrorCode.NO_AUTH_HEADER, e.getErrorCode());
     } catch (Exception e) {
@@ -64,6 +65,7 @@ class AuthInterceptorTest {
       authInterceptor.preHandle(request, null, null);
 
       //THEN
+      fail("preHandle() must throw InvalidValueException");
     } catch (InvalidValueException e) {
       assertEquals(ErrorCode.INVALID_AUTH_VALUE_FORMAT, e.getErrorCode());
     } catch (Exception e) {
@@ -95,6 +97,7 @@ class AuthInterceptorTest {
       authInterceptor.preHandle(request, null, null);
 
       //THEN
+      fail("preHandle() must throw InvalidValueException");
     } catch (InvalidValueException e) {
       assertEquals(exception.getErrorCode(), e.getErrorCode());
     } catch (Exception e) {
