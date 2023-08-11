@@ -42,4 +42,10 @@ public class User extends BaseTimeEntity {
     if (postList.contains(postEntity)) return;
     else postList.add(postEntity);
   }
+
+  public void setTokenPair(TokenPair tokenPairEntity) {
+    if (this.tokenPair == tokenPairEntity) return;
+    this.tokenPair = tokenPairEntity;
+    tokenPairEntity.setUser(this);
+  }
 }

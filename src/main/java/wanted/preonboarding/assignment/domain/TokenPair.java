@@ -31,4 +31,11 @@ public class TokenPair extends BaseTimeEntity {
   private String refreshToken;
   @OneToOne(optional = false)
   private User user;
+
+  //[편의 메서드]
+  public void setUser(User userEntity) {
+    if (this.user == userEntity) return;
+    this.user = userEntity;
+    userEntity.setTokenPair(this);
+  }
 }
