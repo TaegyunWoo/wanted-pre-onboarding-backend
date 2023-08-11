@@ -34,6 +34,16 @@ public class Post extends BaseTimeEntity {
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   private User author;
 
+  //[편의 메서드]
+  public void setAuthor(User userEntity) {
+    if (this.author != null) {
+      if (this.author != userEntity) this.author.getPostList().remove(this);
+      else return;
+    }
+    this.author = userEntity;
+    userEntity.addPost(this);
+  }
+
   /**
    * 조회수 증가 메서드
    */

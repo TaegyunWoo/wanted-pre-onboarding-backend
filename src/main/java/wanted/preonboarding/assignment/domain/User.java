@@ -35,4 +35,11 @@ public class User extends BaseTimeEntity {
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private TokenPair tokenPair;
+
+  //[편의 메서드]
+  public void addPost(Post postEntity) {
+    postEntity.setAuthor(this);
+    if (postList.contains(postEntity)) return;
+    else postList.add(postEntity);
+  }
 }
