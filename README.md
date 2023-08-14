@@ -143,7 +143,7 @@ Authorization: Bearer 붙여넣은_토큰값
 
 ## 데모 영상
 
-Youtube
+[Youtube](https://youtu.be/BFs4yzf_F_A)
 
 <br/><br/>
 
