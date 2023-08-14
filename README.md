@@ -1,4 +1,4 @@
-# 지원자 우태균 원티드 23년 08월 백엔드 인턴십 사전과제
+# \[지원자 우태균\] 원티드 23년 08월 백엔드 인턴십 사전과제
 
 ## Application 실행 방법
 
@@ -18,6 +18,8 @@ cd ./wanted-pre-onboarding-backend
 
 빌드가 완료되면 jar 파일을 실행합니다.
 
+<br/>
+
 ### AWS의 RDS(MySQL)를 DB로 사용하는 경우
 
 ```shell
@@ -25,6 +27,8 @@ java -jar -Dspring.profiles.active="staging" ./build/libs/assignment-0.0.1-SNAPS
 ```
 
 위처럼 profile을 "staging"으로 설정해 실행합니다.
+
+<br/>
 
 ### Local 환경에 설치된 MySQL을 DB로 사용하는 경우
 
@@ -50,6 +54,8 @@ java -jar -Dspring.profiles.active="local-mysql" ./build/libs/assignment-0.0.1-S
 
 위처럼 profile을 "local-mysql"으로 설정해 실행합니다.
 
+<br/>
+
 ### 내장 H2를 DB로 사용하는 경우
 
 해당 Application에는 내장 H2 DB가 존재합니다.
@@ -72,6 +78,8 @@ http://localhost:8080/h2-console
 - `User Name` : `sa`
 - `Password` : 공란
 
+<br/><br/>
+
 ## 엔드포인트 호출 방법
 
 ### Swagger 접속
@@ -84,11 +92,15 @@ Swagger를 사용하여, 원하는 엔드포인트를 호출할 수 있습니다
 http://localhost:8080/swagger
 ```
 
+<br/>
+
 ### API 호출
 
 ![img.png](./docs/imgs/img0.png)
 
 위 그림의 `Try it out` 버튼을 눌러서, 직접 입력값을 전달해 실행하고, 그 결과를 확인해볼 수 있습니다.
+
+<br/>
 
 ### 인증/인가
 
@@ -110,6 +122,8 @@ http://localhost:8080/swagger
 Authorization: Bearer 붙여넣은_토큰값
 ```
 
+<br/><br/>
+
 ## DB 테이블 구조
 
 ![img.png](docs/imgs/img4.png)
@@ -123,9 +137,13 @@ Authorization: Bearer 붙여넣은_토큰값
   - 발급한 토큰(JWT) 정보
   - `MEMBER`·`TOKEN_PAIR` : 일대일 관계
 
+<br/><br/>
+
 ## 데모 영상
 
 Youtube
+
+<br/><br/>
 
 ## 구현 방법
 
@@ -141,6 +159,8 @@ Youtube
 - AWS 배포 환경
   - EC2, RDS(MySQL)
 
+<br/>
+
 ### Library
 
 - `spring-boot-starter-web` : Web MVC Application 구현
@@ -153,6 +173,8 @@ Youtube
 - `mysql-connector-java` : MySQL DB 연결
 - `lombok` : 보일러플레이트 코드 자동화
 - `h2` : 내장 DB
+
+<br/>
 
 ### Implementation
 
@@ -187,11 +209,15 @@ Youtube
   - 로그인된 사용자와 작성자를 비교해, 로그인된 사용자가 작성자인 경우에만 허용
   - 인증된 사용자만 접근 가능
 
+<br/>
+
 ### Details
 - 로그인된 사용자의 정보를 컨트롤러의 파라미터로 받아, 다루기 쉽게끔 Argument Resolver를 추가함.
   - `wanted/preonboarding/assignment/controller/resolver/LoginUserArgumentResolver`
 - 상세 오류코드를 하나의 Enum에서 관리
   - `wanted/preonboarding/assignment/exception/ErrorCode`
+
+<br/>
 
 ### AWS
 
@@ -200,10 +226,14 @@ Youtube
 
 ![img.png](docs/imgs/img5.png)
 
+<br/><br/>
+
 ## API 명세
 
 > Swagger를 통해서도, API 명세를 확인해볼 수 있음  
 [http://13.209.145.13/swagger](http://13.209.145.13/swagger)
+
+<br/>
 
 ### 전체 API
 
@@ -218,6 +248,7 @@ Youtube
 | PATCH  | /posts/{postId} | 특정 게시글 수정   | [특정 게시글 수정 Request/Response](#특정-게시글-수정-request-response) |
 | DELETE | /posts/{postId} | 특정 게시글 삭제   | [특정 게시글 삭제 Request/Response](#특정-게시글-삭제-request-response) |
 
+<br/>
 
 ### 회원가입 Request Response
 
@@ -244,6 +275,8 @@ Youtube
     ]
   }
   ```
+
+<br/>
 
 ### 로그인 Request Response
 
@@ -278,6 +311,8 @@ Youtube
   }
   ```
 
+<br/>
+
 ### 토큰 재발급 Request Response
 
 - Request
@@ -309,6 +344,8 @@ Youtube
     ]
   }
   ```
+
+<br/>
 
 ### 게시글 목록 조회 Request Response
 
@@ -350,6 +387,8 @@ Youtube
   }
   ```
 
+<br/>
+
 ### 새 게시글 생성 Request Response
 
 - Request
@@ -376,6 +415,8 @@ Youtube
     ]
   }
   ```
+
+<br/>
 
 ### 특정 게시글 조회 Request Response
 
@@ -416,6 +457,8 @@ Youtube
   }
   ```
 
+<br/>
+
 ### 특정 게시글 수정 Request Response
 
 - Request
@@ -447,6 +490,8 @@ Youtube
     ]
   }
   ```
+
+<br/>
 
 ### 특정 게시글 삭제 Request Response
 
